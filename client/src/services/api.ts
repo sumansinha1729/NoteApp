@@ -1,7 +1,10 @@
+/// <reference types="vite/client" />
 import axios, { InternalAxiosRequestConfig } from 'axios';
 
+
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL, 
+  withCredentials: true,
 });
 
 API.interceptors.request.use((req: InternalAxiosRequestConfig) => {
