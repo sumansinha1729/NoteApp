@@ -50,105 +50,92 @@ const SignUp: React.FC = () => {
 
   return (
     <div className="bg-white w-[375px] h-[812px] border border-[#232323] rounded-[9px] mx-auto relative font-['Inter']">
-      {/* Status bar placeholder */}
-         <img
-        src="../../public/StatusBar.svg"
+      <img
+        src="/StatusBar.svg"
         alt="Status Bar"
         className="absolute top-0 left-0 w-full h-[44px]"
       />
-       <img
-        src="../../public/top.svg"
+      <img
+        src="/top.svg"
         alt="Top Header Bar"
         className="absolute top-[44px] left-0 w-full h-[56px]"
       />
 
-      {/* Heading */}
       <h2 className="absolute top-[114px] left-[16px] w-[343px] h-[35px] text-center text-[32px] font-bold leading-[110%] tracking-[-0.04em] text-[#232323]">
         Sign up
       </h2>
 
-      {/* Subtitle */}
       <p className="absolute top-[160px] left-[16px] w-[343px] h-[24px] text-center text-sm text-gray-500">
         Sign up to enjoy the feature of HD
       </p>
 
-  {/* Frame 2 - Form + Footer */}
-<div className="absolute top-[210px] left-[16px] w-[343px] h-[391px] flex flex-col gap-[30px]">
+      <div className="absolute top-[210px] left-[16px] w-[343px] h-auto flex flex-col gap-[30px]">
+        <form onSubmit={handleSignUp} className="flex flex-col gap-[20px] w-full">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="date"
+            name="dob"
+            value={form.dob}
+            onChange={handleChange}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
 
-  {/* Frame 1 - Form fields */}
-  <form
-    onSubmit={handleSignUp}
-    className="flex flex-col gap-[20px] w-full"
-  >
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      value={form.name}
-      onChange={handleChange}
-      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
+          {!otpSent ? (
+            <button
+              type="button"
+              onClick={sendOtp}
+              className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Get OTP
+            </button>
+          ) : (
+            <>
+              <input
+                type="text"
+                name="otp"
+                placeholder="Enter OTP"
+                value={form.otp}
+                onChange={handleChange}
+                className="px-4 py-2 border border-gray-300 rounded-md"
+              />
+              <button
+                type="submit"
+                className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+              >
+                Sign up
+              </button>
+            </>
+          )}
+        </form>
 
-    <input
-      type="date"
-      name="dob"
-      value={form.dob}
-      onChange={handleChange}
-      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
+        <p className="text-center text-sm text-[#666666]">
+          Already have an account?{' '}
+          <span
+            onClick={() => navigate('/signin')}
+            className="text-blue-600 font-semibold underline cursor-pointer"
+          >
+            Sign in
+          </span>
+        </p>
+      </div>
 
-    <input
-      type="email"
-      name="email"
-      placeholder="Email"
-      value={form.email}
-      onChange={handleChange}
-      className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-
-    {!otpSent ? (
-      <button
-        type="button"
-        onClick={sendOtp}
-        className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-      >
-        Get OTP
-      </button>
-    ) : (
-      <>
-        <input
-          type="text"
-          name="otp"
-          placeholder="OTP"
-          value={form.otp}
-          onChange={handleChange}
-          className="px-4 py-2 border border-gray-300 rounded-md"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Sign up
-        </button>
-      </>
-    )}
-  </form>
-
-  {/* Already have an account text */}
-  <p className="text-center text-sm text-[#666666]">
-    Already have an account?{' '}
-    <span
-      onClick={() => navigate('/signin')}
-      className="text-blue-600 font-semibold underline cursor-pointer"
-    >
-      Sign in
-    </span>
-  </p>
-</div>
-
-      {/* Home Indicator */}
       <img
-        src="../../public/Home Indicator.svg"
+        src="/HomeIndicator.svg"
         alt="Home Indicator"
         className="fixed bottom-0 w-[375px] h-[34px] z-10"
       />
