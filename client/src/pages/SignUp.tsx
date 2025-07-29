@@ -56,14 +56,6 @@ const SignUp: React.FC = () => {
         alt="Status Bar"
         className="absolute top-0 left-0 w-full h-[44px]"
       />
-  
-
-
-      {/* Logo + HD
-      <div className="absolute top-[55px] left-[16px] w-[343px] h-[32px] flex items-center gap-[10px]">
-        <div className="w-6 h-6 bg-blue-500 rounded-full animate-pulse" />
-        <span className="text-base font-semibold text-black">HD</span>
-      </div> */}
        <img
         src="../../public/top.svg"
         alt="Top Header Bar"
