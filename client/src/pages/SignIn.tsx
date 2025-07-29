@@ -15,7 +15,7 @@ const SignIn: React.FC = () => {
     keepLoggedIn: false,
   });
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -43,9 +43,11 @@ const SignIn: React.FC = () => {
         otp: form.otp,
         keepLoggedIn: form.keepLoggedIn,
       });
-      if(!res.data.token){
-        console.log("no token")
+
+      if (!res.data.token) {
+        console.log('No token received');
       }
+
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
         alert('Login successful');
@@ -59,93 +61,83 @@ const SignIn: React.FC = () => {
     }
   };
 
-
   return (
-    <div className="bg-white w-[375px] h-[812px] border border-[#232323] rounded-[9px] mx-auto relative font-['Inter']">
-      {/* Status Bar */}
-      <img
-        src="/StatusBar.svg"
-        alt="Status Bar"
-        className="absolute top-0 left-0 w-full h-[44px]"
-      />
+    <div className="flex flex-col md:flex-row w-full md:w-[1440px] h-screen mx-auto bg-white border border-[#333] rounded-[32px] font-['Inter'] overflow-hidden">
+      {/* Left Column */}
+      <div className="w-full md:w-[591px] h-full p-8 flex flex-col justify-center">
+        {/* Logo + Heading */}
+        <div className="mb-10 text-center md:text-left">
+          <h2 className="text-2xl md:text-[28px] font-bold">Sign In</h2>
+          <p className="text-sm md:text-base text-gray-500 mt-2">
+            Please login to continue to your account.
+          </p>
+        </div>
 
-      {/* Top Bar */}
-      <img
-        src="/top.svg"
-        alt="Top"
-        className="absolute top-[44px] left-0 w-full h-[56px]"
-      />
+        {/* Form */}
+        <form onSubmit={handleSignIn} className="flex flex-col gap-4 w-full max-w-[399px]">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className="px-4 py-3 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
 
-      {/* Logo + Title */}
-      <div className="absolute top-[110px] left-0 w-full flex flex-col items-center gap-2">
-        <h2 className="text-[28px] font-bold">Sign In</h2>
-        <p className="text-md text-gray-500">Please login to continue to your account.</p>
+          <input
+            type="text"
+            name="otp"
+            placeholder="OTP"
+            value={form.otp}
+            onChange={handleChange}
+            className="px-4 py-3 border border-gray-300 rounded-lg"
+          />
+
+          <span
+            onClick={sendOtp}
+            className="text-blue-600 text-sm font-medium cursor-pointer hover:underline"
+          >
+            Resend OTP
+          </span>
+
+          <label className="flex items-center gap-2 text-sm text-gray-600">
+            <input
+              type="checkbox"
+              name="keepLoggedIn"
+              checked={form.keepLoggedIn}
+              onChange={handleChange}
+            />
+            Keep me logged in
+          </label>
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Sign In
+          </button>
+
+          <p className="text-center text-sm text-gray-600">
+            Need an account?{' '}
+            <span
+              onClick={() => navigate('/')}
+              className="text-blue-600 font-semibold underline cursor-pointer"
+            >
+              Create one
+            </span>
+          </p>
+        </form>
       </div>
 
-      {/* Form */}
-      <form
-        onSubmit={handleSignIn}
-        className="absolute top-[210px] left-[16px] w-[343px] flex flex-col gap-4"
-      >
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      {/* Right Column (Desktop only) */}
+      <div className="hidden md:block w-[849px] h-full">
+        <img
+          src="/right-column.svg"
+          alt="Illustration"
+          className="w-full h-full object-cover"
         />
-
-        <input
-          type="text"
-          name="otp"
-          placeholder="OTP"
-          value={form.otp}
-          onChange={handleChange}
-          className="px-4 py-2 border border-gray-300 rounded-md"
-        />
-
-        <span
-          onClick={sendOtp}
-          className="text-blue-600 text-sm font-medium cursor-pointer hover:underline"
-        >
-          Resend OTP
-        </span>
-
-        <label className="flex items-center gap-2 text-sm text-gray-600">
-          <input
-            type="checkbox"
-            name="keepLoggedIn"
-            checked={form.keepLoggedIn}
-            onChange={handleChange}
-          />
-          Keep me logged in
-        </label>
-
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Sign In
-        </button>
-
-        <p className="text-center text-sm text-[#666666]">
-          Need an account??{' '}
-          <span
-            onClick={() => navigate('/')}
-            className="text-blue-600 font-semibold underline cursor-pointer"
-          >
-            Create one
-          </span>
-        </p>
-      </form>
-
-      {/* Home Indicator */}
-      <img
-        src="/Home Indicator.svg"
-        alt="Home Indicator"
-        className="absolute bottom-0 left-0 w-full h-[34px]"
-      />
+      </div>
     </div>
   );
 };
