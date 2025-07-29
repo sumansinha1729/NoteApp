@@ -16,7 +16,6 @@ const SignUp: React.FC = () => {
     email: '',
     otp: '',
   });
-
   const [otpSent, setOtpSent] = useState(false);
   const navigate = useNavigate();
 
@@ -50,98 +49,186 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row w-full md:w-[1440px] h-screen mx-auto bg-white border border-[#333] rounded-[32px] font-['Inter'] overflow-hidden">
-      {/* Left Column */}
-      <div className="w-full md:w-[591px] h-full p-8 flex flex-col justify-center">
-        {/* Logo + Heading */}
-        <div className="mb-10 text-center md:text-left">
-          <h2 className="text-2xl md:text-[28px] font-bold">Sign Up</h2>
-          <p className="text-sm md:text-base text-gray-500 mt-2">
-            Sign up to enjoy the feature of HD.
+    <div className="w-full min-h-screen bg-white font-['Inter'] flex flex-col md:flex-row">
+      {/* Mobile View */}
+      <div className="relative md:hidden w-[375px] h-[812px] mx-auto border border-[#232323] rounded-[9px] overflow-hidden">
+        {/* Native Status Bar */}
+        <img src="/StatusBar.svg" alt="Status Bar" className="w-full h-[44px]" />
+        <div className="flex flex-col items-center px-[16px] pt-[12px]">
+          {/* Top */}
+          <div className="flex items-center justify-center w-full h-[32px]">
+            <img src="/top.svg" alt="Logo" className="h-6" />
+          </div>
+          {/* Sign Up Heading */}
+          <h1 className="text-[32px] font-bold text-[#232323] mt-[16px] text-center leading-[110%] tracking-[-0.04em]">
+            Sign up
+          </h1>
+
+          {/* Description Text */}
+          <p className="text-[16px] text-[#969696] mt-[8px] text-center">
+            Sign up to enjoy the feature of HD
           </p>
-        </div>
 
-        {/* Form */}
-        <form onSubmit={handleSignUp} className="flex flex-col gap-4 w-full max-w-[399px]">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={form.name}
-            onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-
-          <input
-            type="date"
-            name="dob"
-            value={form.dob}
-            onChange={handleChange}
-            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="px-4 py-3 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-
-          {!otpSent ? (
-            <button
-              type="button"
-              onClick={sendOtp}
-              className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Get OTP
-            </button>
-          ) : (
-            <>
+          {/* Frame 2 - Form Section */}
+          <form onSubmit={handleSignUp} className="w-full flex flex-col gap-[24px] mt-[20px]">
+            <div className="flex flex-col gap-[20px]">
               <input
                 type="text"
-                name="otp"
-                placeholder="Enter OTP"
-                value={form.otp}
+                name="name"
+                placeholder="Your Name"
+                value={form.name}
                 onChange={handleChange}
-                className="px-4 py-3 border border-gray-300 rounded-lg"
+                className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
                 required
               />
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-              >
-                Sign Up
-              </button>
-            </>
-          )}
-        </form>
+              <input
+                type="date"
+                name="dob"
+                value={form.dob}
+                onChange={handleChange}
+                className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full h-[52px] px-[16px] border border-[#367AFF] rounded-[10px]"
+                required
+              />
+              {!otpSent ? (
+                <button
+                  type="button"
+                  onClick={sendOtp}
+                  className="w-full h-[52px] bg-[#367AFF] text-white font-medium rounded-[10px]"
+                >
+                  Get OTP
+                </button>
+              ) : (
+                <input
+                  type="text"
+                  name="otp"
+                  placeholder="Enter OTP"
+                  value={form.otp}
+                  onChange={handleChange}
+                  className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
+                  required
+                />
+              )}
+            </div>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account?{' '}
-          <span
-            onClick={() => navigate('/signin')}
-            className="text-blue-600 font-semibold underline cursor-pointer"
-          >
-            Sign in
-          </span>
-        </p>
+            <p className="text-center text-[14px] text-[#969696]">
+              Already have an account?{' '}
+              <span
+                onClick={() => navigate('/signin')}
+                className="text-[#367AFF] font-semibold underline cursor-pointer"
+              >
+                Sign in
+              </span>
+            </p>
+          </form>
+        </div>
+
+        {/* Native Home Indicator */}
+        <div className="absolute bottom-0 w-full">
+          <img src="/HomeIndicator.svg" alt="Home Indicator" className="w-full h-[34px]" />
+        </div>
       </div>
 
-      {/* Right Column (Desktop only) */}
-      <div className="hidden md:block w-[849px] h-full">
-        <img
-          src="/right-column.svg"
-          alt="Illustration"
-          className="w-full h-full object-cover"
-        />
+      {/* Desktop View */}
+      <div className="hidden md:flex w-full h-screen bg-white border border-[#333] rounded-[32px] overflow-hidden">
+        {/* Left Column */}
+        <div className="w-[591px] h-full p-[32px] flex flex-col justify-start ml-10">
+          <div className="w-[343px] h-[32px] mb-[32px] flex items-center">
+            <img src="/top1.svg" alt="Top Logo" className="h-full "/>
+            <span className='font-bold text-[31px]'>HD</span>
+          </div>
+
+          <div className="max-w-[399px]">
+            <h2 className="text-[32px] font-bold text-[#232323]">Sign up</h2>
+            <p className="text-[16px] text-[#969696] mt-[8px]">Sign up to enjoy the feature of HD</p>
+
+            <form onSubmit={handleSignUp} className="flex flex-col gap-[24px] mt-[20px]">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={form.name}
+                onChange={handleChange}
+                className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
+                required
+              />
+              <input
+                type="date"
+                name="dob"
+                value={form.dob}
+                onChange={handleChange}
+                className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full h-[52px] px-[16px] border border-[#367AFF] rounded-[10px]"
+                required
+              />
+              {!otpSent ? (
+                <button
+                  type="button"
+                  onClick={sendOtp}
+                  className="w-full h-[52px] bg-[#367AFF] text-white font-medium rounded-[10px]"
+                >
+                  Get OTP
+                </button>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    value={form.otp}
+                    onChange={handleChange}
+                    className="w-full h-[52px] px-[16px] border border-[#D9D9D9] rounded-[10px]"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="w-full h-[52px] bg-[#367AFF] text-white font-medium rounded-[10px]"
+                  >
+                    Sign Up
+                  </button>
+                </>
+              )}
+              <p className="text-center text-[14px] text-[#969696]">
+                Already have an account?{' '}
+                <span
+                  onClick={() => navigate('/signin')}
+                  className="text-[#367AFF] font-semibold underline cursor-pointer"
+                >
+                  Sign in
+                </span>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="flex-1 h-full">
+          <img
+            src="/right-column.svg"
+            alt="Illustration"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );
 };
 
 export default SignUp;
+
