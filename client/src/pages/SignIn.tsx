@@ -138,10 +138,10 @@ const SignIn: React.FC = () => {
       <div className="hidden md:flex w-full h-screen bg-white border border-[#333] rounded-[32px] overflow-hidden">
         {/* Left Column */}
         <div className="w-[591px] h-full p-[32px] flex flex-col justify-start ml-10">
-          <div className="w-[343px] h-[32px] mb-[32px]">
-            <img src="/top.svg" alt="Top Logo" className="h-full" />
+           <div className="w-[343px] h-[32px] mb-[32px] flex items-center">
+            <img src="/top1.svg" alt="Top Logo" className="h-full "/>
+            <span className='font-bold text-[31px]'>HD</span>
           </div>
-
           <div className="max-w-[399px]">
             <h2 className="text-[32px] font-bold text-[#232323]">Sign in</h2>
             <p className="text-[16px] text-[#969696] mt-[8px]">Please login to continue to your account.</p>

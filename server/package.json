@@ -5,10 +5,10 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-  "dev": "node --loader ts-node/esm index.ts",
-  "build": "tsc",
-  "start": "node dist/index.js"
-},
+    "dev": "node --loader ts-node/esm index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "author": "suman sinha",
   "license": "ISC",
   "dependencies": {
@@ -24,7 +24,7 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.96",
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.1.0",
     "@types/nodemailer": "^6.4.17",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
